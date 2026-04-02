@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> Mini Projects</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1> Mini Projects</h1>
+  <p class="subtitle">5 interactive JavaScript demos</p>
+
+  <div class="grid">
+
+    <!-- 1. Background Color -->
+    <div class="card" id="bg-card">
+      <p class="card-title">Project 01</p>
+      <h2>Background Color Changer</h2>
+      <button class="btn btn-dark" onclick="randomBg()">Random Color</button>
+      <div class="color-swatches" id="swatches"></div>
+    </div>
+
+    <!-- 2. Live Text -->
+    <div class="card">
+      <p class="card-title">Project 02</p>
+      <h2>Live Text Preview</h2>
+      <input type="text" id="live-input" placeholder="Type something here…" oninput="updateLive()" />
+      <div class="live-box" id="live-out">Your text will appear here…</div>
+      <p class="char-count" id="char-count">0 characters</p>
+    </div>
+
+    <!-- 3. Password Toggle -->
+    <div class="card">
+      <p class="card-title">Project 03</p>
+      <h2>Show / Hide Password</h2>
+      <div class="pw-wrap">
+        <input type="password" id="pw-input" placeholder="Enter your password" oninput="checkStrength()" />
+        <button class="eye-btn" onclick="togglePw()">
+          <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
+      <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+      <p class="strength-label" id="strength-label">Enter a password</p>
+    </div>
+
+    <!-- 4. Image Slider -->
+    <div class="card">
+      <p class="card-title">Project 04</p>
+      <h2>Image Slider</h2>
+      <div class="slider-track" id="slider-track"></div>
+      <div class="slide-controls">
+        <button class="btn btn-outline" onclick="moveSlide(-1)">← Prev</button>
+        <div class="dots" id="dots"></div>
+        <button class="btn btn-outline" onclick="moveSlide(1)">Next →</button>
+      </div>
+    </div>
+
+    <!-- 5. Counter -->
+    <div class="card">
+      <p class="card-title">Project 05</p>
+      <h2>Counter</h2>
+      <div class="counter-display">
+        <div class="counter-num" id="cnt">0</div>
+        <div class="counter-label">Current count</div>
+      </div>
+      <div class="counter-row">
+        <button class="cnt-btn" onclick="adjust(-1)">−</button>
+        <input class="step-input" type="number" id="step" value="1" min="1" max="100" title="Step" />
+        <button class="cnt-btn" onclick="adjust(1)">+</button>
+      </div>
+      <div class="counter-actions">
+        <button class="btn btn-outline" onclick="resetCounter()">Reset</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>Built with vanilla HTML · CSS · JavaScript</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #f1f1f1;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #888;
+      margin-bottom: 40px;
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 28px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #444;
+    }
+
+    .card-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn:active { transform: scale(0.97); }
+    .btn-dark { background: #fff; color: #111; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #444;
+      color: #ddd;
+    }
+    .btn-outline:hover { background: #2a2a2a; }
+
+    /* ── Inputs ── */
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 11px 14px;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: #f1f1f1;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus { border-color: #666; }
+
+    /* ── 1. Background Color ── */
+    #bg-card { transition: background 0.5s, transform 0.2s, border-color 0.2s; }
+
+    .color-swatches {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .swatch {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .swatch:hover { transform: scale(1.2); }
+    .swatch.active { border-color: #fff; }
+
+    /* ── 2. Live Text ── */
+    .live-box {
+      margin-top: 14px;
+      padding: 14px;
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      min-height: 54px;
+      font-size: 15px;
+      color: #f1f1f1;
+      word-break: break-word;
+      transition: border-color 0.2s;
+    }
+
+    .char-count {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #555;
+      text-align: right;
+    }
+
+    /* ── 3. Password ── */
+    .pw-wrap {
+      position: relative;
+    }
+    .pw-wrap input { padding-right: 48px; }
+    .eye-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #666;
+      display: flex;
+      align-items: center;
+      transition: color 0.15s;
+    }
+    .eye-btn:hover { color: #ccc; }
+
+    .strength-bar {
+      margin-top: 12px;
+      height: 4px;
+      background: #222;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .strength-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 4px;
+      transition: width 0.3s, background 0.3s;
+    }
+    .strength-label {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    /* ── 4. Image Slider ── */
+    .slider-track {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 220px;
+      margin-bottom: 14px;
+      background: #111;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.5s, transform 0.5s;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+    }
+
+    .slide-caption {
+      position: relative;
+      z-index: 2;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .slide-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.65);
+      font-weight: 500;
+    }
+
+    .slide-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .slide-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #333;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .dot.active {
+      background: #fff;
+      transform: scale(1.3);
+    }
+
+    /* ── 5. Counter ── */
+    .counter-display {
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .counter-num {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 1;
+      transition: transform 0.1s;
+    }
+
+    .counter-num.pop {
+      transform: scale(1.2);
+    }
+
+    .counter-label {
+      font-size: 12px;
+      color: #555;
+      margin-top: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .counter-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .cnt-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid #333;
+      background: #111;
+      color: #fff;
+      font-size: 26px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .cnt-btn:hover { background: #222; }
+    .cnt-btn:active { transform: scale(0.93); }
+
+    .counter-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .step-input {
+      width: 80px;
+      padding: 8px 10px;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: #f1f1f1;
+      font-size: 14px;
+      text-align: center;
+      outline: none;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #444;
+      font-size: 13px;
+    }
