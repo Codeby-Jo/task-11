@@ -3,85 +3,222 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title> Mini Projects</title>
-  <link rel="stylesheet" href="style.css">
+  <title>JS Mini Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <h1> Mini Projects</h1>
-  <p class="subtitle">5 interactive JavaScript demos</p>
-
-  <div class="grid">
-
-    <!-- 1. Background Color -->
-    <div class="card" id="bg-card">
-      <p class="card-title">Project 01</p>
-      <h2>Background Color Changer</h2>
-      <button class="btn btn-dark" onclick="randomBg()">Random Color</button>
-      <div class="color-swatches" id="swatches"></div>
+  <!-- ░░ HERO ░░ -->
+  <header>
+    <div class="hero-badge">⚡</div>
+    <h1> Mini<br><em>Projects</em></h1>
+    <p class="hero-sub">Five handcrafted interactive demos — zero libraries, pure HTML · CSS · JS.</p>
+    <div class="hero-tags">
+      <span>01 Color Changer</span>
+      <span>02 Live Text</span>
+      <span>03 Password</span>
+      <span>04 Car Slider</span>
+      <span>05 Counter</span>
     </div>
+  </header>
 
-    <!-- 2. Live Text -->
-    <div class="card">
-      <p class="card-title">Project 02</p>
-      <h2>Live Text Preview</h2>
-      <input type="text" id="live-input" placeholder="Type something here…" oninput="updateLive()" />
-      <div class="live-box" id="live-out">Your text will appear here…</div>
-      <p class="char-count" id="char-count">0 characters</p>
+  <main>
+
+    <!-- ░░ PROJECT 01 ░░ -->
+    <section class="project" id="bg-section">
+      <div class="proj-label">
+        <span class="proj-num">01</span>
+        <span class="proj-cat">DOM · Style</span>
+      </div>
+
+      <div class="proj-content">
+        <h2>Background Color Changer</h2>
+        <p class="proj-desc">
+          Click <strong>Random</strong> to generate a surprise color, or pick any swatch below.
+          Each named color is shown with its hex code — built using <code>Math.random()</code>
+          and the <code>element.style</code> property.
+        </p>
+
+        <div class="color-ui">
+          <button class="primary-btn" onclick="randomBg()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            Generate Random
+          </button>
+          <div class="color-name-display" id="color-name">Click a swatch or generate</div>
+          <div class="swatch-grid" id="swatches"></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ░░ PROJECT 02 ░░ -->
+    <section class="project">
+      <div class="proj-label">
+        <span class="proj-num">02</span>
+        <span class="proj-cat">Events · DOM</span>
+      </div>
+
+      <div class="proj-content">
+        <h2>Live Text Preview</h2>
+        <p class="proj-desc">
+          Every keystroke instantly mirrors in the display — no submit button needed.
+          Powered by the <code>oninput</code> event and live <code>textContent</code> updates.
+          Also tracks word count and typing speed.
+        </p>
+
+        <div class="text-ui">
+          <input type="text" class="text-field" id="live-input" placeholder="Start typing something…" oninput="updateLive()" />
+          <div class="preview-box" id="live-out">
+            <span class="preview-placeholder">Your text will appear here in real time…</span>
+          </div>
+          <div class="text-stats">
+            <span id="char-count">0 chars</span>
+            <span id="word-count">0 words</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ░░ PROJECT 03 ░░ -->
+    <section class="project">
+      <div class="proj-label">
+        <span class="proj-num">03</span>
+        <span class="proj-cat">Security · Regex</span>
+      </div>
+
+      <div class="proj-content">
+        <h2>Show / Hide Password</h2>
+        <p class="proj-desc">
+          Tap the eye icon to reveal or mask your password. A live strength meter
+          scores your input against five rules — length, uppercase, lowercase,
+          numbers, and special characters — using regex patterns.
+        </p>
+
+        <div class="pw-ui">
+          <div class="pw-row">
+            <input type="password" class="text-field" id="pw-input" placeholder="Enter a strong password…" oninput="checkStrength()" />
+            <button class="eye-btn" onclick="togglePw()" title="Toggle visibility">
+              <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="strength-segments" id="strength-segments">
+            <div class="seg"></div>
+            <div class="seg"></div>
+            <div class="seg"></div>
+            <div class="seg"></div>
+            <div class="seg"></div>
+          </div>
+
+          <div class="strength-row">
+            <span class="strength-text" id="strength-label">Enter a password</span>
+            <div class="pw-rules" id="pw-rules">
+              <span class="rule" id="r-len">6+ chars</span>
+              <span class="rule" id="r-upper">A–Z</span>
+              <span class="rule" id="r-lower">a–z</span>
+              <span class="rule" id="r-num">0–9</span>
+              <span class="rule" id="r-sym">!@#</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ░░ PROJECT 04 ░░ -->
+    <section class="project">
+      <div class="proj-label">
+        <span class="proj-num">04</span>
+        <span class="proj-cat">Animation · Timer</span>
+      </div>
+
+      <div class="proj-content">
+        <h2>Car Image Slider</h2>
+        <p class="proj-desc">
+          Eight iconic cars in an auto-playing gallery. Navigate with arrows, dots,
+          or keyboard arrow keys. Built with CSS opacity + scale transitions and
+          <code>setInterval</code> for auto-advance every 3.5s.
+        </p>
+
+        <div class="slider-ui">
+          <div class="slider-stage" id="slider-track">
+            <div class="slide-counter" id="slide-counter">1 / 8</div>
+          </div>
+          <div class="slider-controls">
+            <button class="arrow-btn" id="prev-btn" onclick="moveSlide(-1)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="dots-row" id="dots"></div>
+            <button class="arrow-btn" id="next-btn" onclick="moveSlide(1)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ░░ PROJECT 05 ░░ -->
+    <section class="project">
+      <div class="proj-label">
+        <span class="proj-num">05</span>
+        <span class="proj-cat">State · Animation</span>
+      </div>
+
+      <div class="proj-content">
+        <h2>Counter</h2>
+        <p class="proj-desc">
+          Add or subtract by any step value. The big number animates on change,
+          turns green when positive and red when negative. History log tracks
+          every operation — pure JS state management, no framework needed.
+        </p>
+
+        <div class="counter-ui">
+          <div class="counter-display">
+            <div class="counter-number" id="cnt">0</div>
+            <div class="counter-sub">current count</div>
+          </div>
+
+          <div class="counter-btns">
+            <button class="c-btn minus" onclick="adjust(-1)">−</button>
+            <div class="step-box">
+              <label class="step-lbl">step</label>
+              <input type="number" class="step-inp" id="step" value="1" min="1" max="1000" />
+            </div>
+            <button class="c-btn plus" onclick="adjust(1)">+</button>
+          </div>
+
+          <div class="counter-actions">
+            <button class="ghost-btn" onclick="resetCounter()">Reset</button>
+            <button class="ghost-btn" onclick="undoCounter()">Undo</button>
+          </div>
+
+          <div class="history-log" id="history-log">
+            <p class="history-empty">Operations will appear here…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">JS Projects</span>
+      <span class="footer-text">Built with HTML · CSS · JavaScript — no frameworks</span>
     </div>
+  </footer>
 
-    <!-- 3. Password Toggle -->
-    <div class="card">
-      <p class="card-title">Project 03</p>
-      <h2>Show / Hide Password</h2>
-      <div class="pw-wrap">
-        <input type="password" id="pw-input" placeholder="Enter your password" oninput="checkStrength()" />
-        <button class="eye-btn" onclick="togglePw()">
-          <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-            <circle cx="12" cy="12" r="3"/>
-          </svg>
-        </button>
-      </div>
-      <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
-      <p class="strength-label" id="strength-label">Enter a password</p>
-    </div>
-
-    <!-- 4. Image Slider -->
-    <div class="card">
-      <p class="card-title">Project 04</p>
-      <h2>Image Slider</h2>
-      <div class="slider-track" id="slider-track"></div>
-      <div class="slide-controls">
-        <button class="btn btn-outline" onclick="moveSlide(-1)">← Prev</button>
-        <div class="dots" id="dots"></div>
-        <button class="btn btn-outline" onclick="moveSlide(1)">Next →</button>
-      </div>
-    </div>
-
-    <!-- 5. Counter -->
-    <div class="card">
-      <p class="card-title">Project 05</p>
-      <h2>Counter</h2>
-      <div class="counter-display">
-        <div class="counter-num" id="cnt">0</div>
-        <div class="counter-label">Current count</div>
-      </div>
-      <div class="counter-row">
-        <button class="cnt-btn" onclick="adjust(-1)">−</button>
-        <input class="step-input" type="number" id="step" value="1" min="1" max="100" title="Step" />
-        <button class="cnt-btn" onclick="adjust(1)">+</button>
-      </div>
-      <div class="counter-actions">
-        <button class="btn btn-outline" onclick="resetCounter()">Reset</button>
-      </div>
-    </div>
-
-  </div>
-
-  <footer>Built with vanilla HTML · CSS · JavaScript</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
